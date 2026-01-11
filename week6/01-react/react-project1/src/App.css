@@ -1,0 +1,28 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: black;
+  color: rgb(21, 141, 246);
+}
+
+header,
+footer,
+.content {
+  background-color: beige;
+  padding: 3rem;
+}
+
+footer,
+.content {
+  font-weight: 900;
+}
+
+.content {
+  margin: 1rem 0;
+}

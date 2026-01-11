@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+    margin: 5em;
+}
+
+div {
+    padding: 2em;
+    background-color: lightblue;
+    margin-bottom: 1em;
+}
+
+.btn {
+    padding: 2em;
+    margin-bottom: 3em;
+}

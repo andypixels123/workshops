@@ -1,0 +1,16 @@
+div {
+    display: flex;
+    justify-content :center;
+    align-items: center;
+    width:100px;
+    height: 100px;
+    color: #fff;
+    margin: 10px;
+    background-color: black;
+    border-radius: 12px;
+    cursor:pointer;
+
+}
+div:hover {
+    opacity: 0.6;
+}

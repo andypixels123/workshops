@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: plum;
+    height: 100px;
+}
+
+.page-title {
+    float: left;
+    width: 60%;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+    background-color: silver;
+    float: left;
+}
+
+header a {
+    display: inline-block;
+}
+
+
+
+a {
+    padding: 10px 0;
+    text-align: center;
+}
+
+main {
+    background: lightblue;
+    min-height: 200px;
+}
+
+section {
+    margin: 0 0 1em 0;
+}
+
+footer {
+    background: lime;
+    height: 100px;
+}
+
+footer nav {
+    background-color: silver;
+}
+
+footer a {
+    display: inline-block;
+    width: calc(100%/6);
+}
+
+header,
+main,
+footer {
+    padding: 2%;
+}

@@ -1,0 +1,2 @@
+nav{display: flexbox;justify-content:center;}
+nav a{width:100%;flex-grow:1;}

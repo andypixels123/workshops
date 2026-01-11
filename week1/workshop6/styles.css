@@ -1,0 +1,29 @@
+body {
+    font-family: arial, sans-serif;
+}
+
+.container div:first-child {
+    background-color: red;
+}
+
+.container div:nth-child(2) {
+    background-color: rgb(144, 73, 73);
+}
+
+.container div:last-child {
+    background-color: rgb(81, 6, 6);
+}
+
+.container>div {
+    padding: 30px;
+    color: #ffffff;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: green;
+    text-decoration: underline;
+}

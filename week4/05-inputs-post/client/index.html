@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script src="./src/app.js" type="module" defer></script>
+    <title>User Input</title>
+  </head>
+  <body>
+    <h1>User input</h1>
+    <!-- TODO: we need an element to collect name, location, age, bio of staff -->
+    <form id="staff-form">
+      <label for="staffname">Staff name: </label>
+      <input type="text" name="staffname" required />
+      <label for="location">Location: </label>
+      <input type="text" name="location" required />
+      <label for="age">Age: </label>
+      <input type="number" name="age" required min="16" max="65" />
+      <label for="bio">Bio: </label>
+      <input type="text" name="bio" placeholder="optional" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

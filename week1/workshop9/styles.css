@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    line-height: 175%;
+}
+
+.page-head,
+.cookie-notice {
+    text-align: center;
+    position: fixed;
+}
+
+.page-head {
+    width: 100%;
+    padding: 1em;
+    background-color: rgb(35, 170, 94);
+    clear: both;
+}
+
+.cookie-notice {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+    background-color: purple;
+    padding: 1%;
+}
+
+main {
+    max-width: 80%;
+    margin: auto;
+    padding: 80px 0 100px 0;
+}

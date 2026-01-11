@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+body {
+  text-align: center;
+}
+
+main {
+  margin: 2rem;
+  padding: 2rem;
+  border: 1px solid #888;
+}
+
+p {
+  line-height: 165%;
+}
+
+header, footer {
+  padding: 2rem;
+  background-color: silver;
+}
+
+button {
+  padding: 30px 50px;
+  margin-top: 5rem;
+}

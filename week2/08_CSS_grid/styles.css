@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*
+Workshop
+Playing with CSS Grid
+⛳️ In a new index.html file, add a div with a class of container. Inside the container, add 3 divs with a class of box. Open the file in your browser and check the output.
+
+<div class="container">
+  <div class="box">Box 1</div>
+  <div class="box">Box 2</div>
+  <div class="box">Box 3</div>
+</div>
+
+⛳️ Add the display: grid; property to the container. This instantiates your grid.*/
+
+/* .container { */
+/* display: grid; */
+/* } */
+
+/* .box { */
+/* background-color: red; */
+/* } */
+
+/*⛳️ We can set the columns explicitly in our grid by using the grid-template-columns property. You can specify any number of “fractions” of the page to divide it into. Experiment and see what happens with different values.*/
+
+/* .container { */
+/* grid-template-columns: 2fr 2fr 2fr; */
+/* } */
+
+/*⛳️ You can use grid-gap to create a gap between the columns and rows in a grid.*/
+
+/* .container { */
+/* grid-gap: 20px; */
+/* } */
+
+/*
+⛳️ Add two rows to your grid by adding three more boxes and using the grid-template-rows property:
+<div class="container">
+  <div class="box">Box 1</div>
+  <div class="box">Box 2</div>
+  <div class="box">Box 3</div>
+  <div class="box">Box 4</div>
+  <div class="box">Box 5</div>
+  <div class="box">Box 6</div>
+</div>
+*/
+/* .container { */
+/* grid-template-rows: 1fr 0.5fr; */
+/* } */
+
+/* .container { */
+/* grid-auto-rows: 50px; */
+/* grid-auto-flow: row; */
+/* } */
+
+/* 🎯 Build a grid of kittens using CSS grid. You can gather your own cat pics or use
+placekitten.com, it’s up to you. Consider setting up some of the grid to be less uniform! */
+
+/* .kittenContainer { */
+/* display: grid; */
+/* grid-template-columns: 1fr 2fr 1fr; */
+/* layout grid in fractions, % width or fixed px */
+/* grid-template-rows: 1fr 1fr; */
+/* layout grid in fractions, % width or fixed px */
+/* } */
+
+/* .kittenContainer { */
+/* grid-auto-flow: row; */
+/* direction content flows // across row or down column */
+/* } */
+
+/* .kitten { */
+/* make image responsive */
+/* width: 100%; */
+/* height: auto; */
+/* } */
+
+/* 🎯 Mini Challenge: The Holy Grail Layout
+    Implement the “holy grail” layout using CSS grid.
+    Create the layout using semantic HTML elements.
+    The <article> should have content inside of it, like a true web page.
+💭 Help
+    To make a header or footer span columns in a grid, grid-column-start and grid-column-end are useful! 1 is the first column, and -1 is the last column.
+    Here is a wireframe to work from:
+    the 'holy grail layout' to create with css grid
+💭 Rules
+    Write all of your own code; do not copy it from elsewhere.
+    You can look up how to achieve certain goals with grid either from our lesson, demo code or online (but again, write all of your code yourself!)
+🏹 Stretch Goal
+Implement a new grid of images somewhere within the holy grail grid you’ve just created!
+*/
+
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr 3fr 1fr;
+}
+
+header {
+  padding: 20px;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  background-color: red;
+}
+
+aside {
+  padding: 20px;
+  grid-row-start: 2;
+  grid-row-end: 5;
+  background-color: green;
+}
+
+nav {
+  background-color: rgb(247, 190, 32);
+}
+
+.top-nav {
+  padding: 20px;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+}
+
+#foot-nav nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+article {
+  padding: 20px;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  background-color: dodgerblue;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 20px;
+  padding: 20px;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  background-color: rgb(179, 160, 54);
+}

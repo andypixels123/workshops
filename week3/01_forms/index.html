@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <form>
+            <label for="email">Email</label>
+            <input type="email" name="userEmail" id="email" required />
+            <label for="password">Password</label>
+            <input type="password" name="userPassword" id="password" required />
+            <button type="submit" value="submit">Send</button>
+        </form>
+
+<!-- 🎯 Mini Challenge: Forming up some hobbies
+
+Create a new form that collects some information from the user about their hobbies.
+You shoud get a name, city, and a hobby.
+Log the users form submission to the console!
+
+Rules
+--------
+
+Each form <input> should have a <label>.
+Ensure that <input>s and <label>s are connected appropriately.
+
+💭 Help
+
+Check back in this workshop to see the very useful Javascript code which gets the form entries from the form.
+🏹 Stretch Goal
+
+For bonus points, after the user has submitted the form display their entries on the page. -->
+
+
+        <form id="hobbyForm">
+            <label for="userName">Name</label>
+            <input type="text" name="userName" id="userName" required />
+            <label for="userLocation">City</label>
+            <input type="text" name="userLocation" id="userLocation" required />
+            <label for="userHobby">Favourite Hobby</label>
+            <input type="text" name="userHobby" id="userHobby" required />
+            <button type="submit" value="submit">Send</button>
+        </form>
+    </main>
+</body>
+
+</html>
