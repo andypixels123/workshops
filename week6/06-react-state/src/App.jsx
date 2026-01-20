@@ -9,6 +9,7 @@ function App() {
 
   const resetState = () => {
     setMyCount(initialState);
+    decMyCount(initialState);
   };
 
   function incrementCount() {
@@ -21,12 +22,10 @@ function App() {
 
   return (
     <div>
-      <p onClick={resetState}>{myCount} clicks</p>
+      <p onClick={resetState}>{myCount}</p>
       <button onClick={incrementCount}>Increment Counter</button>
       {/* Same as: button.addEventListener('click', incrementCount) */}
-
-      {/* <p onClick={resetState}>{myCount2} clicks</p> */}
-      <p>{myCount2} clicks</p>
+      <p onClick={resetState}>{myCount2}</p>
       <button onClick={decrementCount}>Decrement Counter</button>
       {/* Same as: button.addEventListener('click', decrementCount) */}
     </div>

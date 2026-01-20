@@ -12,14 +12,16 @@ Currently, two official plugins are available:
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 
-================================================================
-WORKSHOP =======================================================
 
+////////////////////////////////////////////////////////////////
+WORKSHOP ///////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
 Conditional Rendering
 Overview
 
 Conditional rendering in React allows us to choose whether to show or hide parts of the rendered UI based on a condition, usually due to a state update or a prop change from a parent. There are a couple of ways to do conditional rendering, and you’ll commonly see both used in React apps. There are a couple of pitfalls to watch out for with one of these approaches!
+
 Class Plan
 
     Demo: Conditional rendering in React: ternary operators and the && operator
@@ -62,7 +64,7 @@ Conditional rendering in React allows us to choose whether to show or hide parts
 
 export default function App() {
   const [isVisible, setIsVisible] = useState(false);
-
+// toggles TRUE / FALSE value for isVisible
   return (
     <div>
       <button onClick={() => setIsVisible(!isVisible)}>Toggle</button>
@@ -89,13 +91,6 @@ export default function App() {
 ⛔️ One common mistake is to use the && operator to conditionally render a component by comparing a falsy value, like an array length property. The following example will illustrate the problem:
 
 🎯 Create a new component called ListItems.jsx and import it to your App.jsx component.
-
-export default function ListItems() {
-  return (
-
-  )
-}
-
 ⛳️ Let’s look at what happens when we conditionally render using the && operator with an array’s .length. Try putting the following code in your return statement for ListItems :
 
 export default function ListItems() {

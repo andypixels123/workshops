@@ -95,8 +95,6 @@ export default function App() {
 }
 
 🎯 Create a react app that has a state variable that increases on the click of a button
-
 🎯 Try adding a button that decreases the number on click
-
 🎯 Add an event listener that resets the number to 0 when you click the number itself
 

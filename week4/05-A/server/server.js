@@ -1,13 +1,16 @@
 import express from "express";
 import cors from "cors";
-import {db} from "./dbConn.js";
-const app=express();
+
+const app = express();
 app.use(cors());
-app.use(express.json());
-const PORT=8080;
-app.listen(PORT, ()=>{
-    console.info(`server is running in port: ${PORT}`);
+app.use(express.json()); // ensure this is present so the server can understand JSON data
+const PORT = 8080;
+
+app.post("/messages", express.json(), (req, res) => {
+    console.log("req.body", req.body);
+    res.json({ status: "Message received!" });
 });
 
-// app.get(()=>{});
-// app.post(()=>{});
+app.listen(PORT, () => {
+    console.info(`server is running in port: ${PORT}`);
+});
