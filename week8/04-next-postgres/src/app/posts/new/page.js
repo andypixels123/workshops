@@ -4,6 +4,11 @@ import { db } from "@/utils/utilities.js";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
+export const metadata = {
+    title: "Posts - Next.js",
+    description: "A simple blog built with Next.js",
+};
+
 function NewPostPage() {
     async function handleSavePost(formData) {
         "use server"; // makes this function run _on the server_, as if by magic API.

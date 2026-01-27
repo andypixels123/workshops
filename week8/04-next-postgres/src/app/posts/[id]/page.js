@@ -1,30 +1,23 @@
-// import pg from "pg";
+// app/posts/[id]/page.js
+
 import { db } from "@/utils/utilities.js";
+import { notFound } from "next/navigation";
 
-// test with
-// http://localhost:3000/posts/3
-// http://localhost:3000/posts/5
-
-async function Post({ params }) {
+export default async function PostPage({ params }) {
     const slug = await params;
-    // const db = new pg.Pool({
-    //     connectionString: process.env.NEXT_PUBLIC_DATABASE_URL,
-    // });
-    // ! now imported, see top of page
+    const post = (await db.query(`SELECT * FROM posts WHERE id = ${slug.id}`)).rows;
+    // console.log(post);
 
-    const post = (await db.query(`SELECT * FROM posts WHERE id = ${slug.id};`))
-        .rows;
+    // if there is no post, run the notFound function to show the not-found.js page.
+    if (post.length === 0) {
+        notFound();
+    }
 
+    // otherwise, get on with rendering the page.
     return (
         <div>
-            {post.map((post) => (
-                <div key={post.id}>
-                    <h2>{post.title}</h2>
-                    <p>{post.content}</p>
-                </div>
-            ))}
+            <h2>{post[0].title}</h2>
+            <p>{post[0].content}</p>
         </div>
     );
 }
-
-export default Post

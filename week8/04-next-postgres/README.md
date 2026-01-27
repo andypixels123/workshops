@@ -179,6 +179,7 @@ import { db } from "@/utils/utilities.js";
 That’s it! This is quite powerful, reducing the amount of code you need to write and the complexity of running a server and client together. For apps that aren’t consuming a third party API, or a shared API with mobile or desktop apps, it’s possible to build full stack apps very quickly this way.
 
 
+
 ================================================================================
 WORKSHOP - NEXT FORMS AND SERVER FUNCTIONS
 ================================================================================
@@ -284,3 +285,205 @@ redirect("/posts");
 👀 That’s it. Your data from the form will be passed to the handleSavePost function, saved to the database, the posts will reload and the user will be sent back to the posts page.
 
 
+
+=============================================================================
+WORKSHOP, Metadata, Page Titles and Descriptions ============================
+=============================================================================
+
+Overview
+
+In HTML we use the <title> tag and , <meta> tags to provide information about the page to browsers. The title appears in the tab and the metadata can appear in Google search results or as embeds when you link to your page on social media.
+
+The metadata is placed in the head section of the HTML document. In modern Next.js, each layout.js or page.js file can export a static metadata object or a dynamic generateMetadata function to specify page metadata which is then rendered in the head section of the HTML document.
+
+Open Graph is a standard for specifying rich information about a page, pioneered by facebook. It’s how you define what shows up when someone pastes a link to your page into a social network or chat client. It can be important to get this information correct to look good in these situations.
+
+Class Plan
+
+    Demo: How to use the static metadata object and dynamic generateMetadata function to define Open Graph properties and page title and description.
+    Workshop: Using the static metadata object and dynamic generateMetadata to define OpenGraph data for social embeds
+
+Learning Objectives
+
+    What is metadata?
+    How Next.js optimises metadata.
+    How to customise the metadata for static and dynamic routes.
+
+Success Criteria
+
+    I can describe what metadata is.
+    I can add metadata that applies to the whole app in the layout file.
+    I can add metadata in static pages.
+    I can add metadata in dynamic pages.
+    I can implement the openGraph property in my app metadata.
+    Stretch goal: I can add a favicon.
+    “Add your own personal success criterion.”
+
+Resources
+
+    Next.js Docs: Metadata
+
+Workshop
+The static metadata export
+
+You can export a metadata object from any page or layout file. You can set a default configuration for every page in the layout, and then override it in specific pages to be more precise for that particular page.
+
+In /app/layout.js:
+
+export const metadata = {
+  title: "Next.js Blog",
+  description: "A simple blog built with Next.js",
+  openGraph: {
+    title: "Next.js Blog",
+    description: "A simple blog built with Next.js",
+    type: "website",
+    url: "https://next-comments-postgres.vercel.app/",
+    images: ["https://next-comments-postgres.vercel.app/og-image.png"], // add an appropriate image to your public folder - need to be in an array
+  },
+};
+
+⛳️ In app/posts/page.js add a static object exporting values for the blog post index page:
+
+export const metadata = {
+  title: "Posts - Next.js",
+  description: "A simple blog built with Next.js",
+};
+
+⛳️ In /app/about/page.js add a static object exporting values for the about page title, etc.
+
+export const metadata = {
+  title: "About - Next.js",
+  description: "A simple blog built with Next.js",
+};
+
+The dynamic generateMetadata function
+
+The generateMetadata function is a dynamic function that you can use to generate specific metadata dynamically. Just as your pages dynamically display content from the database depending on which Post you’ve loaded, you can do the same thing with metadata to set page titles, descriptions and open graph information dynamically. Like your pages, the generateMetadata function can be async and can fetch data from the database or from an external API. Also like pages, the function receives your URL route params and the query string searchParams. ThesearchParams prop works asynchronously as well, similar to how params work. Using Fetch or SQL queries here will be deduplicated by Next.js so that the data is only fetched once per page load and shared between the metadata function and the page.
+
+⛳️ In /app/post/[postId]/page.js add a generateMetadata function that fetches the post from the database and returns the title of the post as the page title:
+
+export async function generateMetadata({ params, searchParams }, parent) {
+  const id = (await params).id;
+  // load the post
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  const post = await res.json();
+  return {
+    title: post.title,
+  };
+}
+
+🎯 Add metadata, static or dynamic, for any remaining pages as needed.
+
+
+---------------------- WORKSHOP ------------------------------------------
+Handling Errors in Next.js
+Overview
+
+Things are going to go wrong in your app. Whether it’s your fault for writing bad code (surely not!?), or something out of your control like a network error or a server issue, you need to be able to handle errors gracefully - at the least you want to show an error message to the user when something goes wrong, and ideally you want to be able to recover from the error and retry the action that caused it.
+
+Next.js and React provide some useful tools to help you handle errors.
+Class Plan
+
+    Demo: Error handling in Next.js
+    Workshop: Error handling in Next.js
+
+Learning Objectives
+
+    Error handling
+    Error boundaries
+    Error recovery
+
+Success Criteria
+
+    I can explain different use cases for not-found and error pages.
+    I can implement a custom not-found page.
+    I can implement a custom error page.
+    “Add your own personal success criterion.”
+
+Resources
+
+    Next.js not found page
+    Next.js Error Handling Docs
+
+Workshop
+not-found.js
+
+The most common kind of error is probably a 404 error. This occurs when a user tries to load a page that doesn’t exist. If you visit the page for an /post/1231231 post id that doesn’t exist in your database, this is a 404 Not Found error. Next.js provides a built in way to handle these errors.
+
+In a project with a posts/[id]/page.js route, that loads a post according to the specified Id in the URL, you can create a posts/[id]/not-found.js file. This will be used to display a custom 404 page when the post is not found. A simple one looks like this, but you can customise it however you like. Twitter’s early days were plagued by the “fail whale” which would be shown when the site was down. You can attempt to reduce the pain of errors by making the error page fun.
+
+// app/posts/not-found.js
+import Link from "next/link";
+
+export default function NotFound() {
+  return (
+    <div>
+      <h2>Not Found</h2>
+      <p>Could not find requested post</p>
+      <Link href="/">Return to the homepage</Link>
+    </div>
+  );
+}
+
+⛳️ In a component that tries to load a post from the database, use the notFound function to trigger the 404 page to show. This is a function that you can import from Next.js.
+
+// app/posts/[id]/page.js
+
+import { db } from "@/utils/dbConnection";
+
+import { notFound } from "next/navigation";
+
+export default async function PostPage({ params }) {
+  const slug = await params;
+  const post = (await db.query(`SELECT * FROM posts WHERE id = ${slug.id}`))
+    .rows;
+
+  // if there is no post, run the notFound function to show the not-found.js page.
+  if (!post) {
+    notFound();
+  }
+
+  // otherwise, get on with rendering the page.
+  return (
+    <div>
+      <h2>{post.title}</h2>
+      <p>{post.content}</p>
+    </div>
+  );
+}
+
+------------------------------ WORKSHOP CONT'D --------------------------------
+error.js
+
+The first line of defence against unexpected errors is the built in error.js file. This sets up what is known as an “Error Boundary”. You can use these files at every level of your app to catch errors that occur in that directory, preventing issues spreading out to the rest of the app.
+
+Next provides different bespoke files depending on the scope of the error you are handling. A global-error.js file can be used to handle errors in your app as a whole, whereas an error.js can be used more generally, in your app folder, and in your static and dynamic routes.
+
+💭 Keep in mind that the global-error.js file will only trigger for errors happening in a production environment.
+
+⛳️ Create an app/error.js file with the following code (error boundary files are always a client component):
+
+"use client";
+
+export default function Error({ error, reset }) {
+  return (
+    <html>
+      <body>
+        <h2>Oh no! Something went wrong on that page! 🙈</h2>
+        <p>{error.message}</p>
+        <button onClick={() => reset()}>Try again</button>
+      </body>
+    </html>
+  );
+}
+
+⛳️ Trigger an error on one of your pages by adding the following code to one of your components and loading the page:
+
+function MyComponent() {
+  // the error always throws because we're deliberately causing a problem
+  // maybe we didn't get a param and this page will not work without it
+  throw new Error("I deliberately broke this page, because I'm a bad person");
+  return <div>My page content</div>;
+}
+
+👀 You should see the contents of your error.js file rendered to the page instead of the page content.

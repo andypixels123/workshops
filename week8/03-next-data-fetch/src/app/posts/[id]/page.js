@@ -1,4 +1,6 @@
+import Form from "@/components/Form";
 // /app/posts/[id]/page.js
+
 export default async function PostPage({ params }) {
     const slug = await params;
     const response = await fetch(
@@ -11,6 +13,7 @@ export default async function PostPage({ params }) {
             <h1>Post {post.id}</h1>
             <h2>{post.title}</h2>
             <p>{post.body}</p>
+            <Form />
         </div>
     );
 }

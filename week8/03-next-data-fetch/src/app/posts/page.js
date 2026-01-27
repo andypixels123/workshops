@@ -39,7 +39,7 @@ async function PostListPage({ searchParams }) {
             <ul>
                 {posts.map((post) => (
                     <li key={post.id}>
-                        <a href={`/post/${post.id}`}>{post.title}</a>
+                        <a href={`/posts/${post.id}`}>{post.title}</a>
                     </li>
                 ))}
             </ul>

@@ -1,5 +1,5 @@
 // import pg from "pg";
-import { db } from "@/utils/utilities.js";
+import { db } from "@/utils/utilities";
 
 async function PostsPage() {
     // const db = new pg.Pool({

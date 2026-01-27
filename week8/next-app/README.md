@@ -238,3 +238,307 @@ export default async function CommentPage({ params }) {
 👀 By following this convention, we can create and structure complex apps with dynamic route parameters without any extra libraries, code or configuration. The parameters and pages just work, as long as the folders are organised correctly, and map 1:1 with the URL in the browser.
 
 
+
+=========================================================================
+WORKSHOP Next Image Component & Fonts ===================================
+=========================================================================
+
+Overview
+
+Next has its own component that replaces the default <img /> tag. Lets look at what it can do!
+
+They have also have Google fonts built in, which makes using a huge variety of fonts much easier.
+Class Outline
+
+Demo: Images component & fonts. Workshop: next/image and next/font experiments.
+Learning Objectives
+
+    Understand what these components do and why they exist.
+    Implement efficient use of images, fonts and scripts on a Next.js website.
+    Understand the capabilities of next/image for optimising images for different devices and screen sizes, and only loading visible images.
+
+Success Criteria
+
+    I can describe how images and fonts are optimised in Next.
+    I can add an Image component to my app whose source is stored locally, in the public folder.
+    I can add an Image component to my app whose source is stored externally, for example, in Unsplash.
+    I can add a new font to my app in the layout file using Google Fonts.
+    Stretch goal: I can test the Image blur placeholder using the Network tab.
+    “Add your own personal success criterion.”
+
+Resources
+
+    Next’s own Image Component
+    Next.js: Font Optimisation
+
+Workshop
+
+⛳️ Import next/image into your page
+
+import Image from "next/image";
+
+⛳️ Add an image to your public directory
+
+⛳️ Import that image in your page
+
+import myImage from "@/../public/images/imagename.jpg";
+
+⛳️ Use your image as the source of your image, and add a blur attribute
+
+<Image src={myImage} alt="the most beautiful image you have every seen" placeholder="blur" />
+
+Play around with large and small images, what happens if you slow your network speed using the Network tab in dev tools?
+
+⛳️ Let’s have a look at fonts now. Go to your layout.js and check how fonts are implemented.
+
+💭 Remember that, while on VSCode, pressing the command / control button and clicking on an element, especially imported elements, will show you where the element is stored. This is especially useful to check the font index file, which contains a list of fonts and their properties.
+
+🎯 Choose a different font from Google Fonts or the font index file, and implement it in your app.
+
+🏹 Try to customise your chosen font as much as possible, adding subsets and other properties. The docs show how to customise your font in different ways.
+
+
+
+
+========================================================================================
+NEXT, CSS STYLING WORKSHOP =============================================================
+========================================================================================
+Styling in Next.js: Global CSS, CSS Modules, and Tailwind CSS
+
+Overview
+
+Next.js supports a large number of different approaches to styling your apps and components.
+
+The globals.css is included by default and can be used to apply styles that take effect over the entire app. This works exactly like your usual styles.css file, and you can reference those style classes using className in your components.
+
+Next.js also supports CSS Modules, which allow you to create a CSS file that is scoped to a single component. This is a great way to keep your styles organised and avoid naming collisions. You can import a CSS file specifically for a component, and use it’s styles only in there, even if they conflict or have the same names with other styles in other components.
+
+Next.js also supports Tailwind CSS out of the box (it even asks if you’d like to use it in the create-next-app script).
+
+We’ll show you simple versions of how to use each of these approaches, but it’s recommended you read the styling docs on the Next.js website to properly understand the different approaches.
+Class Plan
+
+    Demo: Global CSS, CSS Modules, and Tailwind CSS styling approaches
+    Workshop: Styling a Next.js app with Global CSS file, a CSS module, or Tailwind CSS
+
+Learning Objectives
+
+    Global CSS
+    CSS Modules
+    Tailwind CSS
+
+Success Criteria
+
+    I can add styles using the globals.css stylesheet.
+    I can add add styles using a CSS module in one of my pages.
+    I can add styles using Tailwind CSS.
+    I can add a new font to my app in the layout file using Google Fonts.
+    Stretch goal: I can declare my own CSS variables in globals.css
+    “Add your own personal success criterion.”
+
+Resources
+
+    Tailwind CSS: Adding custom styles
+
+Workshop
+Global CSS
+
+⛳️ Create a new Next.js app with create-next-app. Say yes to Tailwind CSS, and no to TypeScript.
+
+npx create-next-app@latest next-styling
+
+👀 Open the project in VS Code:
+
+cd next-styling
+code .
+
+🎯 Open the src/app/globals.css file in your editor and add some simple class css rules to start styling your page header or your navigation. elements in your layout.js file, just to make sure they’re working.
+
+/* src/app/globals.css */
+h1 {
+  color: red;
+}
+
+👀 This should feel quite familiar by now. You can write all your styles in the global.css file and they’ll be able to affect every part of your app.
+
+💭 This is the same as writing a styles.css file in a vanilla JS project, or importing a styles.css file in your index.js file in a React project.
+CSS Modules
+
+⛳️ Create
+.header {
+  background: plum;
+}
+
+⛳️ Import the CSS file into your layout.js file.
+
+// src/app/layout.js
+import headerStyles from "./header.module.css";
+
+🎯 Add the headerStyles.header class to the <header> element in your layout.js file.
+
+// src/app/layout.js
+<header className={headerStyles.header}>
+
+👀 You should see the background of your header change to plum.
+
+💭 Importing a file containing .module.css will turn your styles into a JS Object that you can pass to the className prop of any element. This will apply the styles. Because you have to import the file manually where you want to use the styles, this means the styles are only scoped directly to that component. They will not leak out to other pages or affect other parts of the app unexpectedly.
+
+🎯 Add a footer.module.css file and apply some styles to the footer of your page.
+
+🎯 Create a new component called Header in a file called Header.jsx in the /components directory (you’ll need to make the components folder in the src directory). Its final location is /src/components/Header.jsx. Import your header styles there, and remove the import from the layout file. Import the header component into the layout file and render it.
+
+💭 You now have a separate header component with its own style sheet scoped to just that component.
+
+Tailwind CSS
+----------------
+
+We have been using Tailwind CSS already in our React apps, and we can continue doing so in Next.js in the same way too. No installation needed this time, as Tailwind CSS is installed (if you choose to do so) while setting up a new Next.js app.
+
+Let’s have a look at other features that come with Tailwind CSS.
+Adding custom values to utility classes
+
+When we use utility classes, Tailwind CSSs has already set up predetermined values to its properties. However, we have the option to add our own values too.
+
+⛳️ First, let’s create a new NavBar.jsx component in our components folder with some styles.
+
+export default function NavBar() {
+  return (
+    <nav className="flex justify-center">
+      <a href="#" className="m-2 bg-sky-400 p-4 hover:bg-amber-400">
+        Home
+      </a>
+      <a href="#" className="m-2 bg-sky-400 p-4 hover:bg-amber-400">
+        About
+      </a>
+    </nav>
+  );
+}
+
+------------------------- BOOKMARK ---------------------------------------------------------------------------
+
+If we want to override the predetermined values of margin and padding to our own, we can use square brackets and our new value.
+
+export default function NavBar() {
+  return (
+    <nav className="flex justify-center">
+      <a href="#" className="m-[5px] bg-sky-400 p-[10px] hover:bg-amber-400">
+        Home
+      </a>
+      <a href="#" className="m-[5px] bg-sky-400 p-[10px] hover:bg-amber-400">
+        About
+      </a>
+    </nav>
+  );
+}
+
+Tailwind themes and variables
+
+As you know, Tailwind CSS has predetermined values that we can use to style our elements. However, Tailwind also gives us the possibility to set up our own values, giving us the freedom to customise our colour palette, how wide our margins are, etc. Let’s see how we can set this up.
+
+⛳️ In our globals.css file, add the @theme directive. Within this directive, we can then add CSS variables with our custom values.
+
+💭 A CSS variable stores a specific value that we can then reuse to style our elements.
+
+@theme {
+  --color-peru-500: #cd853f;
+}
+
+Now that we have set up our new colour, we can then use it just like any other Tailwind selector. Let’s use it in our <nav> element:
+
+export default function NavBar() {
+  return (
+    <nav className="flex justify-center bg-peru-500">
+      <a href="#" className="m-[5px] bg-sky-400 p-[10px] hover:bg-amber-400">
+        Home
+      </a>
+      <a href="#" className="m-[5px] bg-sky-400 p-[10px] hover:bg-amber-400">
+        About
+      </a>
+    </nav>
+  );
+}
+
+The Tailwind documentation includes more examples of how to make the most of themes. Check it out!
+
+
+-------------------------------------------WORKSHOP----------------------------------------------
+Handling Errors in Next.js
+Overview
+
+Things are going to go wrong in your app. Whether it’s your fault for writing bad code (surely not!?), or something out of your control like a network error or a server issue, you need to be able to handle errors gracefully - at the least you want to show an error message to the user when something goes wrong, and ideally you want to be able to recover from the error and retry the action that caused it.
+
+Next.js and React provide some useful tools to help you handle errors.
+Class Plan
+
+    Demo: Error handling in Next.js
+    Workshop: Error handling in Next.js
+
+Learning Objectives
+
+    Error handling
+    Error boundaries
+    Error recovery
+
+Success Criteria
+
+    I can explain different use cases for not-found and error pages.
+    I can implement a custom not-found page.
+    I can implement a custom error page.
+    “Add your own personal success criterion.”
+
+Resources
+
+    Next.js not found page
+    Next.js Error Handling Docs
+
+Workshop
+not-found.js
+
+The most common kind of error is probably a 404 error. This occurs when a user tries to load a page that doesn’t exist. If you visit the page for an /post/1231231 post id that doesn’t exist in your database, this is a 404 Not Found error. Next.js provides a built in way to handle these errors.
+
+In a project with a posts/[id]/page.js route, that loads a post according to the specified Id in the URL, you can create a posts/[id]/not-found.js file. This will be used to display a custom 404 page when the post is not found. A simple one looks like this, but you can customise it however you like. Twitter’s early days were plagued by the “fail whale” which would be shown when the site was down. You can attempt to reduce the pain of errors by making the error page fun.
+
+// app/posts/not-found.js
+import Link from "next/link";
+
+export default function NotFound() {
+  return (
+    <div>
+      <h2>Not Found</h2>
+      <p>Could not find requested post</p>
+      <Link href="/">Return to the homepage</Link>
+    </div>
+  );
+}
+
+⛳️ In a component that tries to load a post from the database, use the notFound function to trigger the 404 page to show. This is a function that you can import from Next.js.
+
+// app/posts/[id]/page.js
+
+import { db } from "@/utils/dbConnection";
+
+import { notFound } from "next/navigation";
+
+export default async function PostPage({ params }) {
+  const slug = await params;
+  const post = (await db.query(`SELECT * FROM posts WHERE id = ${slug.id}`))
+    .rows;
+
+  // if there is no post, run the notFound function to show the not-found.js page.
+  if (!post) {
+    notFound();
+  }
+
+  // otherwise, get on with rendering the page.
+  return (
+    <div>
+      <h2>{post.title}</h2>
+      <p>{post.content}</p>
+    </div>
+  );
+}
+
+
+
+
+
