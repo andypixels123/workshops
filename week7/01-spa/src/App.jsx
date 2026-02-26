@@ -56,18 +56,16 @@ import Missing404 from "./components/Missing404"; // curly braces removed
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <h1>Welcome to my website</h1>
-      <nav>
-        <Link style={{color:"green"}} to="/about">About</Link> &apos;&nbsp;
-        <Link to="/">Home</Link>
-      </nav>
-      <Routes>
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="*" element={<Missing404 />} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<Missing404 />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

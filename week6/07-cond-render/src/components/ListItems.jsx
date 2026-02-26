@@ -12,8 +12,8 @@
 
 // The solution is to use the ternary operator instead.
 function ListItems() {
-    const items = []; // returns 'No items'
-    // const items = ["1","2","3"]; // returns items in list
+    // const items = []; // returns 'No items'
+    const items = ["1","2","3"]; // returns items in list
 
     return (
         <div>

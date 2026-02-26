@@ -3,8 +3,6 @@
 import "./globals.css";
 import { Gelasio } from "next/font/google";
 import Header from "@/components/Header";
-// import headerStyles from "./header.module.css";
-
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",

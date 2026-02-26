@@ -14,6 +14,7 @@ db.query(`INSERT INTO messages (msg_name, content) VALUES ($1, $2)`, [
     "Does anyone else..",
     "love oranges",
 ]);
+
 db.query(`INSERT INTO messages (msg_name, content) VALUES ($1, $2)`, [
     "hot take: ",
     "I think oranges suck",

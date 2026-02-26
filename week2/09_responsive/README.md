@@ -119,7 +119,7 @@ At the moment, the boxes simply get wider as the screen gets wider.
 
 ⛳️ Add display: flex to your .container. What happens to the boxs? Did they shoot off of the page? Let’s fix it!
 
-⛳️ Add flex-wrap: wrap to your .container and watch as your boxs dynamically take up the space available to them! You’ll have to give your boxs a width or max-width property otherwise they’ll take up the full width of the page and won’t be able to wrap!
+⛳️ Add flex-wrap: wrap to your .container and watch as your boxs dynamically take up the space available to them! You’ll have to give your boxes a width or max-width property otherwise they’ll take up the full width of the page and won’t be able to wrap!
 
 This should now have made your page match pretty closely to the wireframe! You may need to play around with adding gap to the flex container, and some padding here or there, but the page behaves as expected!
 
@@ -132,7 +132,7 @@ Add a wider variety of content to your page and have a practice with some of the
 
     Try to create a ‘hero’ section with 100vh and 100vw.
 
-    Create a responsive grid which utilises the grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); prooperty (and change the value within the minmax() property to what you want).
+    Create a responsive grid which utilises the grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); property (and change the value within the minmax() property to what you want).
 
     Play around with applying object-fit: cover on your images to see how it affects their display.
 

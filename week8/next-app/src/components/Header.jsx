@@ -1,12 +1,11 @@
 import Link from "next/link";
-import headerStyles from "./header.module.css";
+import headerStyles from "@/header.module.css";
 
-function Header() {
-
+export default function Header() {
     return (
         <>
             <header className={headerStyles.header}>
-            {/* <header className="header"> */}
+                {/* <header className="header"> */}
                 <nav>
                     <Link className="header-link" href="/" title="home page">Home</Link>&nbsp;|&nbsp;
                     <Link href="/about" title="about page">About</Link>&nbsp;|&nbsp;
@@ -19,5 +18,3 @@ function Header() {
         </>
     )
 }
-
-export default Header

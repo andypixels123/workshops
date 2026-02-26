@@ -1,6 +1,6 @@
 
 .PopoverTrigger {
-    background-color: white;
+    background-color: red;
     border-radius: 4px;
 }
 
@@ -8,7 +8,7 @@
     border-radius: 4px;
     padding: 20px;
     width: 260px;
-    background-color: white;
+    background-color: red;
 }
 
 .PopoverArrow {

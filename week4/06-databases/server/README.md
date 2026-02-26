@@ -207,15 +207,11 @@ db.query(`INSERT INTO messages (msg_name, content) VALUES ($1, $2)`, [
   "Does anyone else..",
   "love oranges",
 ]);
+
 db.query(`INSERT INTO messages (msg_name, content) VALUES ($1, $2)`, [
   "hot take: ",
   "I think oranges suck",
 ]);
-
-
-
-
------------------------ BOOKMARK CONTINUE FROM BELOW --------------------------------
 
 Querying a database from an Express endpoint
 
@@ -241,7 +237,8 @@ app.get("/messages", async function (request, response) {
 
 This will log the contents of the messages table to the console, handling the database query in an asynchronous manner.
 
-Additional Queries You can modify the queryDatabase function to perform different types of queries. Here are a few examples:
+Additional Queries
+You can modify the queryDatabase function to perform different types of queries. Here are a few examples:
 Filtering Results
 
 app.get("/messages", async function (request, response) {
@@ -249,8 +246,8 @@ app.get("/messages", async function (request, response) {
   response.json(messages.rows);
 });
 
-Connecting the Database to the requests
 
+Connecting the Database to the requests
 Let’s create a client that makes a fetch request to your server, and get information from your database on your client… magic?
 
 🎯 Create a new database for storing some data sent to your API - it can be any data you like, but keep it reasonably simple to start. Create a seed.js file that instantiates the database and populates it with some test data.
